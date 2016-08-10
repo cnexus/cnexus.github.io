@@ -111,7 +111,7 @@
 </style>
 <body>
     <div id="wrapper">
-        <form action="http://example.com" method="get">
+        <form action="https://docs.google.com/forms/d/e/1FAIpQLScZ1JGgTWmVi1m-LvB1Fb4mlaL2K4KJMiqjWPIF5rIfZd2RvQ/formResponse" method="post" onsubmit="return redirect()">
             <fieldset>
                 <legend>Event Registration</legend>
                 <div>
@@ -132,6 +132,12 @@
     </div>
     
     <script type="text/javascript">
+    function redirect() {
+       window.location.replace("http://stackoverflow.com");
+       return false;
+    }
+
+
     function yesnoCheck() {
     if (document.getElementById('yesCheck').checked) {
         document.getElementById('ifYes').style.display = 'block';
