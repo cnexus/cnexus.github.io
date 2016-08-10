@@ -4,6 +4,8 @@
 <html lang="en">
 <head>
     <title>Event Registration</title>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 </head>
 <style type="text/css">
     #wrapper {
@@ -111,7 +113,7 @@
 </style>
 <body>
     <div id="wrapper">
-        <form action="https://docs.google.com/forms/d/e/1FAIpQLScZ1JGgTWmVi1m-LvB1Fb4mlaL2K4KJMiqjWPIF5rIfZd2RvQ/formResponse" method="post" onsubmit="return redirect()">
+        <form id="myForm" action="https://docs.google.com/forms/d/e/1FAIpQLScZ1JGgTWmVi1m-LvB1Fb4mlaL2K4KJMiqjWPIF5rIfZd2RvQ/formResponse" method="post">
             <fieldset>
                 <legend>Event Registration</legend>
                 <div>
@@ -130,10 +132,30 @@
             </fieldset>
         </form>
     </div>
+
+    <script>
+    $('#myForm').submit(function (e) {
+    // prevent form submission
+    e.preventDefault();
+    var thisForm = $(e.currentTarget);
+    var d = $('#myForm').serialize();
+    $.ajax({
+        // simulate form submission
+        type: thisForm.attr('method') || 'POST',
+        url: thisForm.attr('action') || window.location.href,
+        data: d
+    })
+    .always(function () {
+        // when it is done submitting data to the server, redirect
+        window.location.replace("http://www.google.com");
+    });
+});
+
+    </script>
     
     <script type="text/javascript">
     function redirect() {
-       window.location.replace("http://stackoverflow.com");
+       window.location.href = "http://stackoverflow.com";
        return false;
     }
 
